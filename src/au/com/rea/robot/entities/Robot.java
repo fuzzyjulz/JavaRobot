@@ -3,6 +3,8 @@ package au.com.rea.robot.entities;
 import au.com.rea.robot.enums.Direction;
 import au.com.rea.robot.exceptions.DimensionException;
 
+/** The Robot object encapsulates all the actions that can be performed on a
+ *   Toy Robot */
 public class Robot {
 	private static final int LEFT = -90;
 	private static final int RIGHT = 90;

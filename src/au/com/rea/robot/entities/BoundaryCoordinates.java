@@ -2,6 +2,7 @@ package au.com.rea.robot.entities;
 
 import au.com.rea.robot.exceptions.DimensionException;
 
+/** Represents a bounding surface. */
 public class BoundaryCoordinates {
 	final Coordinate minDimension, maxDimension;
 	
@@ -18,6 +19,7 @@ public class BoundaryCoordinates {
 		}
 	}
 	
+	/** Returns true if the given coordinate is within the boundaries. */
 	public boolean isCoordinateWithinBounds(Coordinate newLocation) {
 		if (newLocation.x < minDimension.x || newLocation.x > maxDimension.x)
 			return false;

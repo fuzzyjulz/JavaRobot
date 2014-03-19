@@ -1,0 +1,16 @@
+<project default="build">
+	<property name="build" value="build" />
+	<property name="classes" value="${build}/classes" />
+	
+
+	<target name="build" depends="clean,compile"/>
+	
+    <target name="clean">
+        <delete dir="${build}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes}"/>
+        <javac srcdir="src" destdir="${classes}" includeantruntime="false"/>
+    </target>
+</project>

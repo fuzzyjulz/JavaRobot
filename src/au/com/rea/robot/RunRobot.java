@@ -10,6 +10,7 @@ import au.com.rea.robot.entities.Table;
 import au.com.rea.robot.exceptions.CommandException;
 import au.com.rea.robot.exceptions.DimensionException;
 
+/** The main class for executing the application */
 public class RunRobot {
 	private static final String PROMPT = ">";
 

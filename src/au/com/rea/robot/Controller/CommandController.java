@@ -7,6 +7,8 @@ import au.com.rea.robot.enums.Direction;
 import au.com.rea.robot.exceptions.CommandException;
 import au.com.rea.robot.exceptions.DimensionException;
 
+/** Performs actions based on the commands given for the scenario of a 
+ *   robot on a table*/
 public class CommandController {
 	private String COMMAND_PLACE = "PLACE";
 	private String COMMAND_LEFT = "LEFT";
@@ -23,6 +25,7 @@ public class CommandController {
 		this.table = table;
 	}
 	
+	/** Interprets the command and executes the action on the robot. */
 	public void interpretCommand(String commandStr) throws CommandException {
 		String[] commandSection = commandStr.split(" ", 2);
 				
@@ -30,7 +33,14 @@ public class CommandController {
 		
 		try {
 			if (COMMAND_PLACE.equalsIgnoreCase(command)) {
+				if (commandSection.length != 2) {
+					throw new CommandException("Place command requires 3 parameters(eg. PLACE 1,2,north)");
+				}
+				
 				place(commandSection[1]);
+			} else if (COMMAND_EXIT.equalsIgnoreCase(command)) {
+				this.commandsFinished = true;
+				// this will now signal that the application should finish
 			} else {
 				if (robot == null) {
 					throw new CommandException("Cannot process any commands until the robot " +
@@ -45,8 +55,6 @@ public class CommandController {
 					robot.moveForward();
 				} else if (COMMAND_REPORT.equalsIgnoreCase(command)) {
 					System.out.println(robot.report());
-				} else if (COMMAND_EXIT.equalsIgnoreCase(command)) {
-					this.commandsFinished = true;
 				} else {
 					throw new CommandException("Command not recognised.");
 				}
@@ -56,6 +64,7 @@ public class CommandController {
 		}
 	}
 
+	/** Runs the more complex PLACE command on the robot */
 	private void place(String parameterStr) 
 			throws CommandException, DimensionException {
 		String[] parameters = parameterStr.split(",");
@@ -78,6 +87,7 @@ public class CommandController {
 		robot.place(new Coordinate(x, y), direction, table);
 	}
 
+	/** Returns a clean Integer or throws a CommandException */
 	private int clenseIntPaameter(String string) throws CommandException {
 		string = clensePaameter(string);
 		
@@ -91,11 +101,18 @@ public class CommandController {
 		}
 	}
 
+	/** Perform clensing on a string, this could potentially be expanded */
 	private String clensePaameter(String string) {
 		return string.trim();
 	}
 	
+	/** Returns true if the command controller has completed. */
 	public boolean isCommandsFinished() {
 		return commandsFinished;
+	}
+	
+	/** Returns the internal Robot object, used for testing.*/
+	public Robot getRobot() {
+		return robot;
 	}
 }
