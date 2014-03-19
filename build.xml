@@ -1,16 +1,42 @@
 <project default="build">
 	<property name="build" value="build" />
 	<property name="classes" value="${build}/classes" />
+	<property name="junit.classes" value="${build}/junit" />
+	<property name="junit.src" value="junit" />
+	<property name="src" value="src" />
+	<property name="output" value="output" />
+	<property name="junit.output.dir" value="${output}/junit" />
 	
 
 	<target name="build" depends="clean,compile"/>
+
+	<target name="build-run-tests" depends="clean,compile-junit,test"/>
 	
     <target name="clean">
-        <delete dir="${build}"/>
+      <delete dir="${build}"/>
+    	<delete dir="${output}"/>
     </target>
 
     <target name="compile">
         <mkdir dir="${classes}"/>
-        <javac srcdir="src" destdir="${classes}" includeantruntime="false"/>
+        <javac srcdir="${src}" destdir="${classes}" includeantruntime="false"/>
+    </target>
+    
+  <target name="compile-junit" depends="compile">
+      <mkdir dir="${junit.classes}"/>
+      <javac srcdir="${junit.src}" classpath="${classes};lib/junit.jar" destdir="${junit.classes}" includeantruntime="false"/>
+  </target>
+
+	<target name="test">
+    <mkdir dir="${junit.output.dir}"/>
+    	<junit dir="${junit.classes}" fork="true" printsummary="on">
+    		<classpath location="${junit.classes}"/>
+    		<classpath location="${classes}"/>
+    		<classpath location="lib/junit.jar"/>
+    		<classpath location="lib/org.hamcrest.core_1.3.0.jar"/>
+  			<batchtest todir="${junit.output.dir}">
+		        <fileset dir="${junit.classes}"/>
+		    </batchtest>
+    	</junit>
     </target>
 </project>

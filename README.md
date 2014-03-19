@@ -8,6 +8,8 @@ go to the project directory and run
 
 or just run the RunRobot class in eclipse.
 
+To execute the tests run `ant test`
+
 Commands
 ========
 `PLACE <x>,<y>,<direction>` - Places the robot at column `<x>`, row `<y>`, and facing `<direction>`. `<direction>` is either NORTH, SOUTH, EAST, or WEST.
