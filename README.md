@@ -3,18 +3,24 @@ To Run:
 
 go to the project directory and run
 `ant`
+
 `./runRobot` or `runRobot.bat`
 
 or just run the RunRobot class in eclipse.
 
 Commands
 ========
-PLACE <x>,<y>,<direction> - Places the robot at column <x>, row <y>, and facing <direction>. <direction> is either NORTH, SOUTH, EAST, or WEST.
-EXIT - Stops the application
-LEFT - Turns the robot left
-RIGHT - Turns the robot right
-MOVE - Moves the robot forward
-REPORT - Reports the position and direction of the robot
+`PLACE <x>,<y>,<direction>` - Places the robot at column `<x>`, row `<y>`, and facing `<direction>`. `<direction>` is either NORTH, SOUTH, EAST, or WEST.
+
+`EXIT` - Stops the application
+
+`LEFT` - Turns the robot left
+
+`RIGHT` - Turns the robot right
+
+`MOVE` - Moves the robot forward
+
+`REPORT` - Reports the position and direction of the robot
 
 
 Problem Details:
